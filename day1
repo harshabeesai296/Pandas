@@ -22,11 +22,11 @@ df
 # Creating a data frame by passing a dictionary of objects that can be converted to a series
 
 df2 = pd.DataFrame({ 'A':1.,
-										 'B': pd.TimeStamp('20130101'),
-										 'C': pd.Series(1, index=list(range(4)), dtype='float32'),
-										 'D': np.array([3]*4, dtype='int32',
-										 'E': pd.Categorical(["test","best","rest","nest"]),
-										 'F': 'foo'
+		     'B': pd.TimeStamp('20130101'),
+		     'C': pd.Series(1, index=list(range(4)), dtype='float32'),
+		     'D': np.array([3]*4, dtype='int32',
+		     'E': pd.Categorical(["test","best","rest","nest"]),
+		     'F': 'foo'
 })
 
 df2
