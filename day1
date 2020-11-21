@@ -1,0 +1,92 @@
+## Object creation in Pandas
+
+# Importing Numpy and Pandas Libraries
+import numpy as np
+import pandas as pd
+
+# Creating a data series in pandas by passing a list of values
+
+s = pd.series([1,5,9,13,np.nan,17,21])
+s
+# Creating a data frame by passing a Numpy array, with a datetime index and labelled columns
+
+dates = pd.date_range('20130101', periods=6)
+dates
+
+# index are the row labels for a dataframe and columns are the column labels
+
+df = pd.DataFrame(np.random.randn(6,4), index = dates, columns = list('ABCD'))
+df
+
+
+# Creating a data frame by passing a dictionary of objects that can be converted to a series
+
+df2 = pd.DataFrame({ 'A':1.,
+										 'B': pd.TimeStamp('20130101'),
+										 'C': pd.Series(1, index=list(range(4)), dtype='float32'),
+										 'D': np.array([3]*4, dtype='int32',
+										 'E': pd.Categorical(["test","best","rest","nest"]),
+										 'F': 'foo'
+})
+
+df2
+df2.dtypes
+
+## Viewing Data in Pandas
+
+# View the top 5 rows of a data frame
+df.head()
+# View the top 10 rows of a data frame
+df.head(10)
+# View the bottom 5 rows of a data frame
+df.tail()
+# View the bottom 10 rows of a data frame
+df.tail(10)
+# View the index of the Data frame
+df.index
+# View the columns of a Data frame
+df.columns
+
+# To represent a pandas data frame in numpy array. Array does not include labels and columns
+df.to_numpy()
+
+# A quick statistic summary of your data
+df.describe()
+
+# Transposing your data frame
+df.T
+
+# Sorting data frame by axis
+df.sort_index(axis=1, ascending=False)
+
+# Sorting data frame by values
+df.sort_values(by='B')
+
+## Selecting data in Pandas
+
+# Selecting a single column, gives out a series
+df['A']
+
+# Selecting by slicing rows
+df[0:3]
+df['20130101':'20130105']
+
+# Selecting by index label
+df.loc[dates[0]]
+
+# Selecting on a multi axis label
+df.loc[:,['A','B']]
+
+# Combining slicing and Multi axis
+df.loc['20130101':'20130103', ['A','B']]
+
+# Reduction in dimension of object returned because only one row is selected
+df.loc['20130101',['A','B']]
+
+# Get a scalar value
+df.loc['20130101','A']
+
+# Faster Method for above
+df.at['20130101','A']
+
+
